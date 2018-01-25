@@ -93,7 +93,7 @@ public class AdaptadorListView extends BaseAdapter implements ListAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return lista_productos.size();
+        return 1;
     }
 
     @Override

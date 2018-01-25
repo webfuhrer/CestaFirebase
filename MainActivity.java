@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements FragmentoLogin.In
         FragmentManager fm=getFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
         FragmentoLogin fl=new FragmentoLogin();
-
+       String nombre= getResources().getString(R.string.app_name);
         ft.replace(R.id.contenedor_fragment, fl);
         ft.commit();
 

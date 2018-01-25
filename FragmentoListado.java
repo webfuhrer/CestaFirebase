@@ -8,7 +8,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -32,7 +37,7 @@ public class FragmentoListado extends Fragment implements AccesoFirebase.Respues
             }
         });
         AccesoFirebase.obtenerProductos(this);//Lanzo el método, que cuando tenga la respuesta llamará a obtenerProductos(lista)
-
+        AccesoFirebase.obtenerImagen();//Llamo al método para que cargue lka imagen
         return vista;
     }
 
@@ -46,6 +51,16 @@ public class FragmentoListado extends Fragment implements AccesoFirebase.Respues
         listado.setAdapter(adaptador);
         adaptador.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void cargarImagen(StorageReference referencia) {
+
+        ImageView imagen=(ImageView)vista.findViewById(R.id.img_usuario);
+        Glide.with(getActivity().getBaseContext()/* context */)
+                .using(new FirebaseImageLoader())
+                .load(referencia)
+                .into(imagen);
     }
 
     //Método implementado de la interfaz creada en DialogoInsertarProducto
